@@ -30,7 +30,6 @@ void Start()
     {
         if (timer.Update())
         {
-            print("spawning object");
             SpawnObject();
         }
     }

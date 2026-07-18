@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] Head _head;
     PlayerMovement m_playerMovement;
     Rigidbody2D m_rigidBody;
 
@@ -20,6 +22,11 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+
+    internal void IncreaseHeadSize()
+    {
+        _head.IncreaseSize();
     }
 }

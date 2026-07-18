@@ -4,8 +4,9 @@ public class Head : MonoBehaviour
 {
     [SerializeField] BoxCollider2D _boxCollider;
     [SerializeField] SpriteRenderer _spriteRenderer;
-    [SerializeField] float _rightingForce, _massPerVolume;
+    [SerializeField] float _massPerVolume, _headSizeIncreaseInterval;
     [SerializeField] Transform[] _headWalls;
+    [SerializeField] SpriteRenderer[] _eyes;
 
     [SerializeField] float _balancePidProportional, _balancePidIntegral, _balancePidDifferential;
     vPID m_balancePID;
@@ -21,7 +22,7 @@ public class Head : MonoBehaviour
     {
         m_rigidBody = GetComponent<Rigidbody2D>();
         m_balancePID = new vPID(1f, 0f, 0f);
-        RefreshCollider();
+        RefreshSize();
     }
 
     // Update is called once per frame
@@ -30,14 +31,24 @@ public class Head : MonoBehaviour
         m_balancePID.SetVariables(_balancePidProportional, _balancePidIntegral, _balancePidDifferential);
         float currentAngle = VLib.Vector2ToEulerAngle(transform.up);
         float torque = m_balancePID.Update(currentAngle, 0f);
-        m_rigidBody.AddTorque(torque * _rightingForce * Time.fixedDeltaTime);
+        m_rigidBody.AddTorque(torque * Time.fixedDeltaTime);
     }
 
-    void RefreshCollider()
+    internal void IncreaseSize()
+    {
+        _spriteRenderer.size += new Vector2(_headSizeIncreaseInterval, 0f);
+        RefreshSize();
+    }
+
+    void RefreshSize()
     {
         _boxCollider.size = _spriteRenderer.size;
         m_rigidBody.mass = _boxCollider.size.x * _boxCollider.size.y * _massPerVolume;
+
         _headWalls[0].transform.localPosition = new Vector3(-_boxCollider.size.x/2f, _headWalls[0].transform.localPosition.y);
-        _headWalls[1].transform.localPosition = new Vector3(_boxCollider.size.x/2f, _headWalls[0].transform.localPosition.y);
+        _headWalls[1].transform.localPosition = new Vector3(_boxCollider.size.x/2f, _headWalls[1].transform.localPosition.y);
+
+        _eyes[0].transform.localPosition = new Vector2(-_boxCollider.size.x / 4f, _eyes[0].transform.localPosition.y);
+        _eyes[1].transform.localPosition = new Vector2(_boxCollider.size.x / 4f, _eyes[1].transform.localPosition.y);
     }
 }

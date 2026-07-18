@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
@@ -8,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement")]
     [SerializeField] InputActionReference _moveAction, _sprintAction;
     [SerializeField] float _movementForceByMass, _sprintForceMult, _airStrafeScale, _maxMoveForce,  _footFriction, _airAccelerationSpeedLimit;
-
+    bool m_usingMouseForMovement = false;
 
     Rigidbody2D m_rigidBody;
 
@@ -33,8 +34,26 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector2 moveVector = _moveAction.action.ReadValue<Vector2>();
-        moveVector.y = 0f;
+        Vector2 moveVector = Vector2.zero;
+
+
+        if (m_usingMouseForMovement)
+        {
+            if (Mouse.current.leftButton.isPressed || Mouse.current.rightButton.isPressed)
+            {
+                int pointerId = PointerInputModule.kMouseLeftId;
+
+                if (!EventSystem.current.IsPointerOverGameObject(pointerId))
+                {
+                    moveVector = new Vector2(Mouse.current.leftButton.isPressed ? -1f : 1f, 0f);
+                }
+            }
+        }
+        else
+        {
+            moveVector = _moveAction.action.ReadValue<Vector2>();
+            moveVector.y = 0f;
+        }
 
         if (moveVector.x != 0f)
         {
