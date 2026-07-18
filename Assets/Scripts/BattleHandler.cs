@@ -7,6 +7,8 @@ public class BattleHandler : MonoBehaviour
     internal static BattleHandler s_instance;
     float m_pauseMenuTimeFactor, m_dialogueTimeFactor;
 
+    float money = 0.0f;
+
     internal void SetPauseMenuTimeScale(float a_timeFactor) { m_pauseMenuTimeFactor = a_timeFactor; UpdateTimeScale(); }
     internal void SetDialogueTimeScale(float a_timeFactor) { m_dialogueTimeFactor = a_timeFactor; UpdateTimeScale(); }
 
@@ -40,5 +42,11 @@ public class BattleHandler : MonoBehaviour
     internal void RestartLevel()
     {
         SceneManager.LoadScene("Main");
+    }
+
+    float addMoney(float amount)
+    {
+        money += amount;
+        return money;
     }
 }

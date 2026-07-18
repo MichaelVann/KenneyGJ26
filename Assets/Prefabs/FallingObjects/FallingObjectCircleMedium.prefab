@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3103314983262162690}
   - component: {fileID: 7354130536535415878}
   m_Layer: 0
-  m_Name: FallingObject
+  m_Name: FallingObjectCircleMedium
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -170,3 +170,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc21e5ed72b57f64a9291d5b627d47a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  _rigidbody: {fileID: 2744581838662325767}
+  _spawnWeight: 1

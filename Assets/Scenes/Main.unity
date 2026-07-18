@@ -334,8 +334,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64f26745a0d771145bae7a30da58680e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  _objectPrefabs:
+  - {fileID: 956295423247013455, guid: 4e8e9f5a7c097cf498e3d76c8c651351, type: 3}
+  - {fileID: 956295423247013455, guid: 3b1b30ae4585a8147b43c0f1a41ae4ac, type: 3}
   _spawnWidth: 15
-  _fallingObjectPrefab: {fileID: 956295423247013455, guid: 3b1b30ae4585a8147b43c0f1a41ae4ac, type: 3}
+  _maxSpawnImpulse: 5
+  _maxSpawnTorque: 1
+  spawnRate: 1
 --- !u!4 &275681696
 Transform:
   m_ObjectHideFlags: 0
@@ -345,7 +350,7 @@ Transform:
   m_GameObject: {fileID: 275681694}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 20, z: 0}
+  m_LocalPosition: {x: 0, y: 6.73, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
