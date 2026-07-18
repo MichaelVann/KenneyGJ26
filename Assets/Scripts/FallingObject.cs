@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class FallingObject : MonoBehaviour
 {
-    float value = 1f;
+    [SerializeField] float value = 1f;
     [SerializeField] Rigidbody2D _rigidbody;
     [SerializeField] float _spawnWeight = 1.0f;
     [SerializeField] float _despawnHeight = -10.0f;

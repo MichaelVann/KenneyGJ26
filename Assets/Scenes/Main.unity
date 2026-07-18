@@ -686,6 +686,7 @@ MonoBehaviour:
   _objectPrefabs:
   - {fileID: 7819539328986005873, guid: 8d9ca02772463fd46b3215c63236f015, type: 3}
   - {fileID: 2717194224747283305, guid: 1fa16912d63987842a6cd9f916b4847d, type: 3}
+  - {fileID: 9153638135081040089, guid: 5b803d7af86986848b0e5a9913a5b71d, type: 3}
   _spawnWidth: 15
   _maxSpawnImpulse: 5
   _maxSpawnTorque: 1
