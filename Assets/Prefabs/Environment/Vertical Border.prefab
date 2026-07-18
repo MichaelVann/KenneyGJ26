@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6599387153405957988}
   - component: {fileID: 6964377039704131195}
   - component: {fileID: 4273173843060133378}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Vertical Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
