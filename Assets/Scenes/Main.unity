@@ -678,15 +678,21 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 275681694}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 64f26745a0d771145bae7a30da58680e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
   _objectPrefabs:
   - {fileID: 7819539328986005873, guid: 8d9ca02772463fd46b3215c63236f015, type: 3}
-  - {fileID: 2717194224747283305, guid: 1fa16912d63987842a6cd9f916b4847d, type: 3}
+  - {fileID: 7819539328986005873, guid: a8a09e8dfdf6d5142898f9b285c361d8, type: 3}
+  - {fileID: 7819539328986005873, guid: 93b6d86b807c00345a45c121e709af00, type: 3}
   - {fileID: 9153638135081040089, guid: 5b803d7af86986848b0e5a9913a5b71d, type: 3}
+  - {fileID: 9153638135081040089, guid: ec2dc067acbcedc4cb4b2e659586bbcc, type: 3}
+  - {fileID: 9153638135081040089, guid: 8a623adb2e7e7aa49bcd158058fd173e, type: 3}
+  - {fileID: 2717194224747283305, guid: 1fa16912d63987842a6cd9f916b4847d, type: 3}
+  - {fileID: 2717194224747283305, guid: 3754af73147c81c4fbe898dc5d8921a2, type: 3}
+  - {fileID: 2717194224747283305, guid: 9f963e33d24c97e4882e2b03d1c6f6fd, type: 3}
   _spawnWidth: 15
   _maxSpawnImpulse: 5
   _maxSpawnTorque: 1

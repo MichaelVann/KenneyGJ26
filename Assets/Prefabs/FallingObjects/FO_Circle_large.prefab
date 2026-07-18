@@ -8,6 +8,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 432872306547534633, guid: 32402516bea999b49b112c42b0e0a316, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9999896
+      objectReference: {fileID: 0}
+    - target: {fileID: 432872306547534633, guid: 32402516bea999b49b112c42b0e0a316, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.004559904
+      objectReference: {fileID: 0}
     - target: {fileID: 3670746573023926834, guid: 32402516bea999b49b112c42b0e0a316, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -15,6 +23,14 @@ PrefabInstance:
     - target: {fileID: 3670746573023926834, guid: 32402516bea999b49b112c42b0e0a316, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4701973354774225534, guid: 32402516bea999b49b112c42b0e0a316, type: 3}
+      propertyPath: m_Intensity
+      value: 1.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 4701973354774225534, guid: 32402516bea999b49b112c42b0e0a316, type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 2.698408
       objectReference: {fileID: 0}
     - target: {fileID: 5841557752034462937, guid: 32402516bea999b49b112c42b0e0a316, type: 3}
       propertyPath: m_Color.b

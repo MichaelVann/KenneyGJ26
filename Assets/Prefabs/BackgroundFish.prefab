@@ -119,3 +119,18 @@ MonoBehaviour:
   _despawnX: 40
   minScale: 1
   maxScale: 5
+  _objectPrefabs:
+  - {fileID: 7819539328986005873, guid: 8d9ca02772463fd46b3215c63236f015, type: 3}
+  - {fileID: 7819539328986005873, guid: a8a09e8dfdf6d5142898f9b285c361d8, type: 3}
+  - {fileID: 7819539328986005873, guid: 93b6d86b807c00345a45c121e709af00, type: 3}
+  - {fileID: 9153638135081040089, guid: 5b803d7af86986848b0e5a9913a5b71d, type: 3}
+  - {fileID: 9153638135081040089, guid: ec2dc067acbcedc4cb4b2e659586bbcc, type: 3}
+  - {fileID: 9153638135081040089, guid: 8a623adb2e7e7aa49bcd158058fd173e, type: 3}
+  - {fileID: 2717194224747283305, guid: 1fa16912d63987842a6cd9f916b4847d, type: 3}
+  - {fileID: 2717194224747283305, guid: 3754af73147c81c4fbe898dc5d8921a2, type: 3}
+  - {fileID: 2717194224747283305, guid: 9f963e33d24c97e4882e2b03d1c6f6fd, type: 3}
+  _minScaleSpawnTime: 1.5
+  _maxScaleSpawnTime: 3
+  _maxSpawnImpulse: 5
+  _maxSpawnTorque: 1
+  goesRight: 1

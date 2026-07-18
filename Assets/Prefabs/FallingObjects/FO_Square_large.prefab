@@ -8,6 +8,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 432872306547534633, guid: 32402516bea999b49b112c42b0e0a316, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.99925613
+      objectReference: {fileID: 0}
+    - target: {fileID: 432872306547534633, guid: 32402516bea999b49b112c42b0e0a316, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.03856523
+      objectReference: {fileID: 0}
+    - target: {fileID: 4701973354774225534, guid: 32402516bea999b49b112c42b0e0a316, type: 3}
+      propertyPath: m_Intensity
+      value: 2.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 4701973354774225534, guid: 32402516bea999b49b112c42b0e0a316, type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 2.5467417
+      objectReference: {fileID: 0}
     - target: {fileID: 6209880403069552991, guid: 32402516bea999b49b112c42b0e0a316, type: 3}
       propertyPath: m_LocalBounds.m_Center.y
       value: -0.00000011920929

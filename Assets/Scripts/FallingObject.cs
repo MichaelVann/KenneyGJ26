@@ -1,41 +1,46 @@
-using System;
 using UnityEngine;
 
 public class FallingObject : MonoBehaviour
 {
-    [SerializeField] float value = 1f;
+    [SerializeField] float _value = 1f;
     [SerializeField] Rigidbody2D _rigidbody;
-    [SerializeField] float _spawnWeight = 1.0f;
-    [SerializeField] float _despawnHeight = -10.0f;
+    [SerializeField] float _spawnWeight = 1f;
+    [SerializeField] float _despawnHeight = -10f;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Awake()
     {
-        
+        if (_rigidbody == null)
+        {
+            _rigidbody = GetComponent<Rigidbody2D>();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (_rigidbody.transform.position.y <= _despawnHeight)
+        if (transform.position.y <= _despawnHeight)
         {
-            GameObject.Destroy(gameObject);
+            Destroy(gameObject);
         }
     }
 
     public void ApplyForce(float force, Vector2 direction)
     {
-        _rigidbody.AddForce(direction * force);
+        _rigidbody.AddForce(
+            direction.normalized * force,
+            ForceMode2D.Impulse
+        );
     }
 
     public void ApplyTorque(float torque)
     {
-        _rigidbody.AddTorque(torque);
+        _rigidbody.AddTorque(
+            torque,
+            ForceMode2D.Impulse
+        );
     }
 
     public float GetSpawnWeight()
     {
         return _spawnWeight;
     }
-   
 }

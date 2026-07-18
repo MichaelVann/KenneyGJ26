@@ -1,3 +1,4 @@
+using System.Threading;
 using UnityEngine;
 
 public class BackgroundFish : MonoBehaviour
@@ -14,8 +15,19 @@ public class BackgroundFish : MonoBehaviour
     [SerializeField] float minScale = 1.0f;
     [SerializeField] float maxScale = 5.0f;
 
+    [SerializeField] GameObject[] _objectPrefabs;
+
+    //time before it drops a scale
+    [SerializeField] float _minScaleSpawnTime = 0.5f; 
+    [SerializeField] float _maxScaleSpawnTime = 1.5f;
+
+    [SerializeField] float _maxSpawnImpulse = 5.0f;
+    [SerializeField] float _maxSpawnTorque = 1.0f;
+
     float moveSpeed = 0.0f;
     public bool goesRight = true;
+
+    vTimer timer;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -43,11 +55,21 @@ public class BackgroundFish : MonoBehaviour
         //scale the sprite
         _spriteRender.transform.localScale = _spriteRender.transform.localScale * VLib.vRandom(minScale, maxScale);
 
+
+        //create the timer that will randomly drop scales (fallingObject)
+        timer = new vTimer(VLib.vRandom(_minScaleSpawnTime, _maxScaleSpawnTime));
+
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        if (timer.Update())
+        {
+            SpawnObject();
+        }
+
         if (transform.position.x > _despawnX || transform.position.x < -_despawnX)
         {
             GameObject.Destroy(gameObject);
@@ -65,4 +87,52 @@ public class BackgroundFish : MonoBehaviour
 
     public bool IsGoingRight() { return goesRight; }
 
+
+    void SpawnObject()
+    {
+        GameObject fallingObjectPrefab = SelectRandomFallingObject();
+        FallingObject fallingObject = Instantiate(fallingObjectPrefab).GetComponent<FallingObject>();
+
+        fallingObject.transform.position = transform.position;
+
+        //add a small rotation impulse 
+        float randTorque = VLib.vRandom(-_maxSpawnTorque, +_maxSpawnTorque);
+        fallingObject.ApplyTorque(randTorque);
+
+        //add a velocity impulse
+        float randImpulse = VLib.vRandom(0, _maxSpawnImpulse);
+        Vector3 impulseDir = VLib.vRandom(0, 1) > 0.5 ? new Vector3(-1, 0, 0) : new Vector3(+1, 0, 0); //randomly select between impusling left or right
+        fallingObject.ApplyForce(randImpulse, impulseDir);
+
+    }
+
+    //selects a random falling object based on their spawn weights
+    GameObject SelectRandomFallingObject()
+    {
+        float total = 0f;
+
+        for (int i = 0; i < _objectPrefabs.Length; i++)
+        {
+            total += _objectPrefabs[i].GetComponent<FallingObject>().GetSpawnWeight();
+        }
+
+        float roll = VLib.vRandom(0f, total);
+        GameObject selectedPrefab = _objectPrefabs[0];
+        for (int i = 0; i < _objectPrefabs.Length; i++)
+        {
+            if (roll > _objectPrefabs[i].GetComponent<FallingObject>().GetSpawnWeight())
+            {
+                roll -= _objectPrefabs[i].GetComponent<FallingObject>().GetSpawnWeight();
+            }
+            else
+            {
+                selectedPrefab = _objectPrefabs[i];
+                break;
+            }
+        }
+        return selectedPrefab;
+    }
 }
+
+
+
