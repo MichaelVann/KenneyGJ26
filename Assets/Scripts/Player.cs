@@ -8,6 +8,13 @@ public class Player : MonoBehaviour
     PlayerMovement m_playerMovement;
     Rigidbody2D m_rigidBody;
 
+    bool m_movementAllowed = true;
+
+    internal bool GetMovementAllowed() { return m_movementAllowed; }
+
+    internal void SetLinearVelocity(Vector2 a_velocity) { m_rigidBody.linearVelocity = a_velocity; }
+    internal void SetMovementAllowed(bool a_value) { m_movementAllowed = a_value; }
+
     private void Awake()
     {
         m_rigidBody = GetComponent<Rigidbody2D>();
@@ -28,5 +35,17 @@ public class Player : MonoBehaviour
     internal void IncreaseHeadSize()
     {
         _head.IncreaseSize();
+    }
+
+    private void OnTriggerEnter2D(Collider2D a_collision)
+    {
+        if (a_collision.gameObject.CompareTag("TransitionToUpgradeZone"))
+        {
+            BattleHandler.s_instance.TransitionToUpgrades();
+        }
+        else if (a_collision.gameObject.CompareTag("TransitionToBattleZone"))
+        {
+            BattleHandler.s_instance.TransitionToBattle();
+        }
     }
 }

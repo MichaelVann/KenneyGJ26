@@ -34,7 +34,7 @@ public class UpgradeZone : MonoBehaviour
     {
         if (a_collision.gameObject.layer == LayerMask.NameToLayer("Head"))
         {
-            m_playerInZone=true;
+            m_playerInZone = true;
         }
     }
 

@@ -9,15 +9,16 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement")]
     [SerializeField] InputActionReference _moveAction, _sprintAction;
     [SerializeField] float _movementForceByMass, _sprintForceMult, _airStrafeScale, _maxMoveForce,  _footFriction, _airAccelerationSpeedLimit;
-    bool m_usingMouseForMovement = false;
+    bool m_usingMouseForMovement = true;
 
+    Player m_player;
     Rigidbody2D m_rigidBody;
-
 
     internal InputAction GetMovementInputAction() { return _moveAction.action; }
 
     void Awake()
     {
+        m_player = GetComponentInParent<Player>();
         m_rigidBody = GetComponent<Rigidbody2D>();
     }
 
@@ -34,42 +35,44 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector2 moveVector = Vector2.zero;
-
-
-        if (m_usingMouseForMovement)
+        if (m_player.GetMovementAllowed())
         {
-            if (Mouse.current.leftButton.isPressed || Mouse.current.rightButton.isPressed)
-            {
-                int pointerId = PointerInputModule.kMouseLeftId;
+            Vector2 moveVector = Vector2.zero;
 
-                if (!EventSystem.current.IsPointerOverGameObject(pointerId))
+            if (m_usingMouseForMovement)
+            {
+                if (Mouse.current.leftButton.isPressed || Mouse.current.rightButton.isPressed)
                 {
-                    moveVector = new Vector2(Mouse.current.leftButton.isPressed ? -1f : 1f, 0f);
+                    int pointerId = PointerInputModule.kMouseLeftId;
+
+                    if (!EventSystem.current.IsPointerOverGameObject(pointerId))
+                    {
+                        moveVector = new Vector2(Mouse.current.leftButton.isPressed ? -1f : 1f, 0f);
+                    }
                 }
             }
+            else
+            {
+                moveVector = _moveAction.action.ReadValue<Vector2>();
+                moveVector.y = 0f;
+            }
+
+            if (moveVector.x != 0f)
+            {
+                float maxMoveForce = 15f;
+
+                Vector2 desiredMovement = maxMoveForce * moveVector;
+
+                Vector2 delta = desiredMovement - m_rigidBody.linearVelocity * Mathf.Abs(moveVector.magnitude);
+                delta = delta.normalized * Mathf.Clamp(delta.magnitude, -maxMoveForce, maxMoveForce);
+
+                Vector2 moveForce = delta / maxMoveForce;
+                moveForce *= _sprintAction.action.ReadValue<float>() > 0 ? _sprintForceMult : 1f;
+
+                m_rigidBody.AddForce(moveForce * _movementForceByMass * m_rigidBody.mass * Time.fixedDeltaTime * 50f);
+            }
+
+            m_rigidBody.linearVelocityX *= _footFriction;
         }
-        else
-        {
-            moveVector = _moveAction.action.ReadValue<Vector2>();
-            moveVector.y = 0f;
-        }
-
-        if (moveVector.x != 0f)
-        {
-            float maxMoveForce = 15f;
-
-            Vector2 desiredMovement = maxMoveForce * moveVector;
-
-            Vector2 delta = desiredMovement - m_rigidBody.linearVelocity * Mathf.Abs(moveVector.magnitude);
-            delta = delta.normalized * Mathf.Clamp(delta.magnitude, -maxMoveForce, maxMoveForce);
-
-            Vector2 moveForce = delta / maxMoveForce;
-            moveForce *= _sprintAction.action.ReadValue<float>() > 0 ? _sprintForceMult : 1f;
-
-            m_rigidBody.AddForce(moveForce * _movementForceByMass * m_rigidBody.mass * Time.fixedDeltaTime * 50f);
-        }
-        m_rigidBody.linearVelocityX *= _footFriction;
     }
-
 }
