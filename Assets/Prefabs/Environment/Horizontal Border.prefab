@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8139545156030414988}
   - component: {fileID: 7379122061683913259}
   - component: {fileID: 7137423617277358523}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Horizontal Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
