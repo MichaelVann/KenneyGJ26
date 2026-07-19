@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,6 +8,7 @@ public class BattleHandler : MonoBehaviour
     [SerializeField] Transform _mainCameraPoint, _upgradesCameraPoint;
     [SerializeField] float _cameraLerpSpeed;
     [SerializeField] Player _player;
+    [SerializeField] TextMeshProUGUI _cashValueText;
     internal static BattleHandler s_instance;
     float m_pauseMenuTimeFactor, m_dialogueTimeFactor;
 
@@ -40,6 +42,7 @@ public class BattleHandler : MonoBehaviour
     {
         m_targetCameraPoint = _player.transform.position.x >= 15f ? _upgradesCameraPoint : _mainCameraPoint;
         Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, m_targetCameraPoint.position, Time.deltaTime * _cameraLerpSpeed);
+        _cashValueText.text = GameHandler.s_instance.GetCash().ToString();
     }
 
     void UpdateTimeScale()

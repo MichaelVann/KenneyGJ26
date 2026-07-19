@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 580efaad82ee51f42ab0850429aa37f1
+guid: 09a48d49a2aac374a8eef38790aade94
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Rubik Glitch
+  - Luckiest Guy
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

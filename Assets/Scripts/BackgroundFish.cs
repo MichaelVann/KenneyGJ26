@@ -100,6 +100,7 @@ public class BackgroundFish : MonoBehaviour
         fallingObject.ApplyTorque(randTorque);
 
         //add a velocity impulse
+        fallingObject.SetLinearVelocityX(moveSpeed * (goesRight ? 1f : -1f));
         float randImpulse = VLib.vRandom(0, _maxSpawnImpulse);
         Vector3 impulseDir = VLib.vRandom(0, 1) > 0.5 ? new Vector3(-1, 0, 0) : new Vector3(+1, 0, 0); //randomly select between impusling left or right
         fallingObject.ApplyForce(randImpulse, impulseDir);

@@ -5,7 +5,7 @@ public class UpgradeZone : MonoBehaviour
 {
     [SerializeField] Light2D _overheadLight;
     [SerializeField] RectTransform _shutterTransform;
-    [SerializeField] float _shutterSpeed;
+    [SerializeField] float _shutterSpeed, _lightIntensity;
     bool m_playerInZone;
 
     float m_originalShutterHeight, m_shutterValue;
@@ -24,7 +24,7 @@ public class UpgradeZone : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _overheadLight.intensity = m_playerInZone ? 6f : 0f;
+        _overheadLight.intensity = m_playerInZone ? _lightIntensity : 0f;
         m_shutterValue = Mathf.Lerp(m_shutterValue, m_playerInZone ? 0f : 1f, Time.deltaTime * _shutterSpeed);
 
         _shutterTransform.sizeDelta = new Vector2(_shutterTransform.sizeDelta.x, m_originalShutterHeight * m_shutterValue);

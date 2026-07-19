@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class FallingObject : MonoBehaviour
@@ -6,6 +7,10 @@ public class FallingObject : MonoBehaviour
     [SerializeField] Rigidbody2D _rigidbody;
     [SerializeField] float _spawnWeight = 1f;
     [SerializeField] float _despawnHeight = -10f;
+
+    internal float GetValue() { return _value; }
+
+    internal void SetLinearVelocityX(float a_velocityX) { _rigidbody.linearVelocityX = a_velocityX; }
 
     private void Awake()
     {
@@ -43,4 +48,5 @@ public class FallingObject : MonoBehaviour
     {
         return _spawnWeight;
     }
+
 }

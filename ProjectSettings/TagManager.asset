@@ -6,6 +6,7 @@ TagManager:
   tags:
   - TransitionToBattleZone
   - TransitionToUpgradeZone
+  - Falling Object
   layers:
   - Default
   - TransparentFX

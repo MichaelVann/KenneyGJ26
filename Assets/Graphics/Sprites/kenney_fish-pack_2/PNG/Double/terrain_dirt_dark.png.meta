@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: ac9ab72d665ab394c8a7044d80339347
+guid: f5a3f92780f573f41aa0f3871a61ebb2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4227622987593372642
-    second: seaweed_green_b_0
-  - first:
-      213: 986523871898281878
-    second: seaweed_green_b_1
+      213: 3852307007151900946
+    second: terrain_dirt_dark_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +48,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 1
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -129,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: seaweed_green_b_0
+      name: terrain_dirt_dark_0
       rect:
         serializedVersion: 2
-        x: 38
+        x: 0
         y: 0
-        width: 30
-        height: 81
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -144,30 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e1ca83caa477455c0800000000000000
-      internalID: -4227622987593372642
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: seaweed_green_b_1
-      rect:
-        serializedVersion: 2
-        x: 70
-        y: 0
-        width: 23
-        height: 62
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 697a0f21c36d0bd00800000000000000
-      internalID: 986523871898281878
+      spriteID: 219890700d4267530800000000000000
+      internalID: 3852307007151900946
       vertices: []
       indices: 
       edges: []
@@ -186,8 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      seaweed_green_b_0: -4227622987593372642
-      seaweed_green_b_1: 986523871898281878
+      terrain_dirt_dark_0: 3852307007151900946
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
