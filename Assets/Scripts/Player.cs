@@ -36,16 +36,4 @@ public class Player : MonoBehaviour
     {
         _head.IncreaseSize();
     }
-
-    private void OnTriggerEnter2D(Collider2D a_collision)
-    {
-        if (a_collision.gameObject.CompareTag("TransitionToUpgradeZone"))
-        {
-            BattleHandler.s_instance.TransitionToUpgrades();
-        }
-        else if (a_collision.gameObject.CompareTag("TransitionToBattleZone"))
-        {
-            BattleHandler.s_instance.TransitionToBattle();
-        }
-    }
 }

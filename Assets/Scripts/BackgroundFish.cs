@@ -64,8 +64,8 @@ public class BackgroundFish : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (timer.Update())
+        bool inSpawnArea = transform.position.x > -15 && transform.position.x < 15;
+        if (timer.Update() && inSpawnArea)
         {
             SpawnObject();
         }
