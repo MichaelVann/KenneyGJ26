@@ -983,25 +983,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 275681694}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 64f26745a0d771145bae7a30da58680e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  _objectPrefabs:
-  - {fileID: 7819539328986005873, guid: 8d9ca02772463fd46b3215c63236f015, type: 3}
-  - {fileID: 7819539328986005873, guid: a8a09e8dfdf6d5142898f9b285c361d8, type: 3}
-  - {fileID: 7819539328986005873, guid: 93b6d86b807c00345a45c121e709af00, type: 3}
-  - {fileID: 9153638135081040089, guid: 5b803d7af86986848b0e5a9913a5b71d, type: 3}
-  - {fileID: 9153638135081040089, guid: ec2dc067acbcedc4cb4b2e659586bbcc, type: 3}
-  - {fileID: 9153638135081040089, guid: 8a623adb2e7e7aa49bcd158058fd173e, type: 3}
-  - {fileID: 2717194224747283305, guid: 1fa16912d63987842a6cd9f916b4847d, type: 3}
-  - {fileID: 2717194224747283305, guid: 3754af73147c81c4fbe898dc5d8921a2, type: 3}
-  - {fileID: 2717194224747283305, guid: 9f963e33d24c97e4882e2b03d1c6f6fd, type: 3}
+  _objectPrefab: {fileID: 1837744204524124898, guid: 17de8255daa580c4e9ded58f51e1814b, type: 3}
   _spawnWidth: 15
-  _maxSpawnImpulse: 5
-  _maxSpawnTorque: 1
-  spawnRate: 1
+  _maxSpawnImpulse: 10.55
+  _maxSpawnTorque: 7.61
+  minSpawnRate: 1
+  maxSpawnRate: 2
 --- !u!4 &275681696
 Transform:
   m_ObjectHideFlags: 0
@@ -1011,7 +1003,7 @@ Transform:
   m_GameObject: {fileID: 275681694}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 23.2, z: 0}
+  m_LocalPosition: {x: -0.03, y: 17.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18677,6 +18669,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 530802066319693226, guid: 366d3cd23e506d44d885d71997c6352a, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2365675151827443238, guid: 366d3cd23e506d44d885d71997c6352a, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 2681648056170383002, guid: 366d3cd23e506d44d885d71997c6352a, type: 3}
       propertyPath: m_Color.b
       value: 0
@@ -18759,6 +18759,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5240344122413942589, guid: 366d3cd23e506d44d885d71997c6352a, type: 3}
       propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5240344122413942589, guid: 366d3cd23e506d44d885d71997c6352a, type: 3}
+      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6155011293304887871, guid: 366d3cd23e506d44d885d71997c6352a, type: 3}

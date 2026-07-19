@@ -11,18 +11,19 @@ using UnityEngine.Rendering;
 public class ObjectSpawner : MonoBehaviour
 
 {
-    [SerializeField] GameObject[] _objectPrefabs;
-    [SerializeField] float _spawnWidth = 15f;
+    [SerializeField] GameObject _objectPrefab;
+    [SerializeField] float _spawnWidth = 15.0f;
     [SerializeField] float _maxSpawnImpulse = 5.0f;
     [SerializeField] float _maxSpawnTorque = 1.0f;   
-    [SerializeField] float spawnRate = 1.0f;
+
+    [SerializeField] float minSpawnRate = 1.0f;
+    [SerializeField] float maxSpawnRate = 6.0f;
     vTimer timer;
 
 // Start is called once before the first execution of Update after the MonoBehaviour is created
 void Start()
     {
-        timer = new vTimer(spawnRate);
-        
+        timer = new vTimer(maxSpawnRate);
     }
 
     // Update is called once per frame
@@ -31,16 +32,15 @@ void Start()
         if (timer.Update())
         {
             SpawnObject();
+            timer = new vTimer(VLib.vRandom(minSpawnRate, maxSpawnRate));
         }
     }
 
     void SpawnObject()
     {
-        GameObject fallingObjectPrefab = SelectRandomFallingObject();
-        FallingObject fallingObject = Instantiate(fallingObjectPrefab).GetComponent<FallingObject>();
-
-        int spawnX = VLib.vRandom(-15, +15);
-        fallingObject.transform.position = new Vector3(spawnX, transform.position.y, 0);
+        float spawnX = VLib.vRandom(-_spawnWidth, +_spawnWidth);
+        Vector3 spawnPos = new Vector3(spawnX, transform.position.y, 0);
+        FallingObject fallingObject = Instantiate(_objectPrefab, spawnPos, Quaternion.identity).GetComponent<FallingObject>();
 
         //add a small rotation impulse 
         float randTorque = VLib.vRandom(-_maxSpawnTorque, +_maxSpawnTorque);
@@ -53,30 +53,30 @@ void Start()
            
     }
 
-    //selects a random falling object based on their spawn weights
-    GameObject SelectRandomFallingObject()
-    {
-        float total = 0f;
+    ////selects a random falling object based on their spawn weights
+    //GameObject SelectRandomFallingObject()
+    //{
+    //    float total = 0f;
 
-        for (int i = 0; i < _objectPrefabs.Length; i++)
-        {
-            total += _objectPrefabs[i].GetComponent<FallingObject>().GetSpawnWeight();
-        }
+    //    for (int i = 0; i < _objectPrefabs.Length; i++)
+    //    {
+    //        total += _objectPrefabs[i].GetComponent<FallingObject>().GetSpawnWeight();
+    //    }
 
-        float roll = VLib.vRandom(0f, total);
-        GameObject selectedPrefab = _objectPrefabs[0];
-        for (int i = 0; i < _objectPrefabs.Length; i++)
-        {
-            if (roll > _objectPrefabs[i].GetComponent<FallingObject>().GetSpawnWeight())
-            {
-                roll -= _objectPrefabs[i].GetComponent<FallingObject>().GetSpawnWeight();
-            }
-            else
-            {
-                selectedPrefab = _objectPrefabs[i];
-                break;
-            }
-        }
-        return selectedPrefab;
-    }
+    //    float roll = VLib.vRandom(0f, total);
+    //    GameObject selectedPrefab = _objectPrefabs[0];
+    //    for (int i = 0; i < _objectPrefabs.Length; i++)
+    //    {
+    //        if (roll > _objectPrefabs[i].GetComponent<FallingObject>().GetSpawnWeight())
+    //        {
+    //            roll -= _objectPrefabs[i].GetComponent<FallingObject>().GetSpawnWeight();
+    //        }
+    //        else
+    //        {
+    //            selectedPrefab = _objectPrefabs[i];
+    //            break;
+    //        }
+    //    }
+    //    return selectedPrefab;
+    //}
 }

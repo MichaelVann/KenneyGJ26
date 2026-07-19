@@ -3,11 +3,12 @@ using UnityEngine;
 
 public class FallingObject : MonoBehaviour
 {
-    [SerializeField] float _value = 1f;
-    [SerializeField] Rigidbody2D _rigidbody;
-    [SerializeField] float _spawnWeight = 1f;
-    [SerializeField] float _despawnHeight = -10f;
-    [SerializeField] float _density = 10.0f;
+    [SerializeField] protected float _value = 1f;
+    [SerializeField] protected Rigidbody2D _rigidbody;
+    [SerializeField] protected float _spawnWeight = 1f;
+    [SerializeField] protected float _despawnHeight = -10f;
+    [SerializeField] protected float _density = 10.0f;
+    [SerializeField] bool _startsFrozen = true;
 
     internal float GetValue() { return _value; }
 
@@ -22,7 +23,7 @@ public class FallingObject : MonoBehaviour
             _rigidbody = GetComponent<Rigidbody2D>();
         }
 
-        SetFrozen(true); //Start frozen
+        SetFrozen(_startsFrozen); //Start frozen
 
         float calculatedWeight = _density * transform.localScale.x * transform.localScale.y;
         _rigidbody.mass = calculatedWeight;
