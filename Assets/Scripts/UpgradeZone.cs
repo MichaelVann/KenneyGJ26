@@ -45,9 +45,4 @@ public class UpgradeZone : MonoBehaviour
             m_playerInZone = false;
         }
     }
-
-    public void IncreaseHeadSizePressed()
-    {
-        m_player.IncreaseHeadSize();
-    }
 }

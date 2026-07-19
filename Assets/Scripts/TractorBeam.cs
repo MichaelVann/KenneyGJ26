@@ -33,7 +33,6 @@ public class TractorBeam : MonoBehaviour
             fallingObject.GetRigidbody2D().bodyType = RigidbodyType2D.Kinematic;
             fallingObject.transform.position = _teleportPoint.position;
             fallingObject.GetRigidbody2D().bodyType = RigidbodyType2D.Dynamic;
-            GameHandler.s_instance.ChangeCash(VLib.ChanceTruncate(fallingObject.GetValue()));
         }
     }
 }

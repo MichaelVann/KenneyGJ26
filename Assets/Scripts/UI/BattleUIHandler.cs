@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class BattleUIHandler : MonoBehaviour
 {
     internal static BattleUIHandler s_instance;
-    [SerializeField] GameObject _uiHudCanvas, _pauseMenu;
+    [SerializeField] GameObject _uiHudCanvas, _pauseMenu, _pausedText;
     [SerializeField] GameObject _dialoguePrefab;
     [SerializeField] InputActionReference _openMenuAction;
     [SerializeField] TextMeshProUGUI _cashValueText, _debtValueText;
@@ -28,14 +28,24 @@ public class BattleUIHandler : MonoBehaviour
     {
         m_dialogueOpen = false;
         SetPauseMenuOpened(false);
+
+        List<string> dialogs = new List<string>();
+        dialogs.Add("We've finally caught you! You're stuck here until you pay off your degenerate son's debts! I hear he's still gambling profusely on the underground seahorse races. So it might be a while.");
+        dialogs.Add("Catch the fish scales and take them into the cave on the right to sell them. Avoid the big ones for now until you get a few upgrades. And the mines, they'll just send the scales everywhere.");
+        dialogs.Add("Also, remember that you've a got nasty allergy to the sand, don't bang your head trying to carry too much. Well, good luck! Make me some money!");
+        StartDialogue(dialogs);
     }
 
     // Update is called once per frame
     void Update()
     {
-        _cashValueText.text = "$" + GameHandler.s_instance.GetCash().ToString();
-        _debtValueText.text = "$" + BattleHandler.s_instance.GetDebt().ToString();
+        int cash = GameHandler.s_instance.GetCash();
+        int debt = BattleHandler.s_instance.GetDebt();
+        _cashValueText.text = "$" + cash.ToString();
+        _cashValueText.color = cash >= debt ?  Color.green : Color.red;
+        _debtValueText.text = "$" + debt.ToString();
         _debtTimerCircle.fillAmount = BattleHandler.s_instance.GetDebtTimerFraction();
+        _pausedText.SetActive(BattleHandler.s_instance.GetDebtPaused());
     }
 
     internal void StartDialogue(List<string> a_strings)

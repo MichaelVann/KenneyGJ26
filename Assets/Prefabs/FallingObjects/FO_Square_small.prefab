@@ -22,7 +22,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6916605841741732748, guid: 32402516bea999b49b112c42b0e0a316, type: 3}
       propertyPath: m_Name
-      value: FallingObjectSquare
+      value: FO_Square_small
       objectReference: {fileID: 0}
     - target: {fileID: 7726039041466739574, guid: 32402516bea999b49b112c42b0e0a316, type: 3}
       propertyPath: m_Sprite
@@ -31,6 +31,14 @@ PrefabInstance:
     - target: {fileID: 7726039041466739574, guid: 32402516bea999b49b112c42b0e0a316, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8814817822367065494, guid: 32402516bea999b49b112c42b0e0a316, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.333
+      objectReference: {fileID: 0}
+    - target: {fileID: 8814817822367065494, guid: 32402516bea999b49b112c42b0e0a316, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.333
       objectReference: {fileID: 0}
     - target: {fileID: 8814817822367065494, guid: 32402516bea999b49b112c42b0e0a316, type: 3}
       propertyPath: m_LocalPosition.x
@@ -72,6 +80,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9222487201466702711, guid: 32402516bea999b49b112c42b0e0a316, type: 3}
+      propertyPath: m_Mass
+      value: 3.3333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 9222487201466702711, guid: 32402516bea999b49b112c42b0e0a316, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: d6f6d2f8eb2dde74db999b51fb4fa36f, type: 2}
     m_RemovedComponents:
     - {fileID: 8273306061019972809, guid: 32402516bea999b49b112c42b0e0a316, type: 3}
     m_RemovedGameObjects: []

@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] GameObject _spriteObj;
     [Header("Movement")]
     [SerializeField] InputActionReference _moveAction, _sprintAction;
-    [SerializeField] float _movementForceByMass, _sprintForceMult, _airStrafeScale, _maxMoveForce,  _airAccelerationSpeedLimit;
+    [SerializeField] float _movementForceByMass, _movementForceIncrement, _sprintForceMult, _airStrafeScale, _maxMoveForce,  _airAccelerationSpeedLimit;
     bool m_usingMouseForMovement = true;
 
     Player m_player;
@@ -69,7 +69,9 @@ public class PlayerMovement : MonoBehaviour
                 Vector2 moveForce = delta / maxMoveForce;
                 moveForce *= _sprintAction.action.ReadValue<float>() > 0 ? _sprintForceMult : 1f;
 
-                m_rigidBody.AddForce(moveForce * _movementForceByMass * m_rigidBody.mass * Time.fixedDeltaTime * 50f);
+                float upgradeBoost = _movementForceByMass + _movementForceIncrement * BattleHandler.s_instance.GetUpgrade(Upgrade.eUpgradeType.MovementForce).GetLevel();
+
+                m_rigidBody.AddForce(moveForce * upgradeBoost * m_rigidBody.mass * Time.fixedDeltaTime * 50f);
             }
         }
     }

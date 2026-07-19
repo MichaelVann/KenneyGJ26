@@ -30,12 +30,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-    }
-
-    internal void IncreaseHeadSize()
-    {
-        _head.IncreaseSize();
+        _head.SetSizeLevel(BattleHandler.s_instance.GetUpgrade(Upgrade.eUpgradeType.HeadWidth).GetLevel());
     }
 
     internal void Explode()

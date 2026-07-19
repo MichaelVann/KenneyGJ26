@@ -14,7 +14,10 @@ public class BattleHandler : MonoBehaviour
 
     Transform m_targetCameraPoint;
     float m_debtAmount;
+    bool m_debtPaused;
     vTimer m_debtTimer;
+    
+    Upgrade[] m_upgrades;
 
     internal void SetPauseMenuTimeScale(float a_timeFactor) { m_pauseMenuTimeFactor = a_timeFactor; UpdateTimeScale(); }
     internal void SetDialogueTimeScale(float a_timeFactor) { m_dialogueTimeFactor = a_timeFactor; UpdateTimeScale(); }
@@ -22,6 +25,10 @@ public class BattleHandler : MonoBehaviour
     internal float GetDebtTimerFraction() { return m_debtTimer.GetCompletionPercentage(); }
     internal int GetDebt() { return (int)m_debtAmount; }
 
+    internal Upgrade GetUpgrade(int a_index) { return m_upgrades[a_index]; }
+    internal Upgrade GetUpgrade(Upgrade.eUpgradeType a_type) { return m_upgrades[(int)a_type]; }
+
+    internal bool GetDebtPaused() { return m_debtPaused; }
 
     private void Awake()
     {
@@ -34,6 +41,13 @@ public class BattleHandler : MonoBehaviour
         m_targetCameraPoint = _mainCameraPoint;
         m_debtTimer = new vTimer(60f);
         GameHandler.s_instance.ChangeCash((int)_startingCashAmount);
+        m_debtAmount = _startingDebtAmount;
+
+        m_upgrades = new Upgrade[(int)Upgrade.eUpgradeType.Count];
+        for (int i = 0; i < m_upgrades.Length; i++)
+        {
+            m_upgrades[i] = new Upgrade();
+        }
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -45,12 +59,14 @@ public class BattleHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        m_targetCameraPoint = _player.transform.position.x >= 15f ? _upgradesCameraPoint : _mainCameraPoint;
+        bool inUpgradeZone = _player.transform.position.x >= 15f;
+        m_debtPaused = inUpgradeZone;
+        m_targetCameraPoint = inUpgradeZone ? _upgradesCameraPoint : _mainCameraPoint;
         Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, m_targetCameraPoint.position, Time.deltaTime * _cameraLerpSpeed);
 
-        if (m_debtTimer.Update())
+        if (!m_debtPaused && m_debtTimer.Update())
         {
-            GameHandler.s_instance.ChangeCash((int)m_debtAmount);
+            GameHandler.s_instance.ChangeCash((int)-m_debtAmount);
             m_debtAmount = m_debtAmount * _debtMult;
         }
     }

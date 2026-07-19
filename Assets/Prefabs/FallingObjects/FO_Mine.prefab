@@ -145,17 +145,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9544311525b157f44b74d312332e8afe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  _value: -1
+  _valueMultiplier: 1
   _rigidbody: {fileID: 2792295617183725336}
   _spawnWeight: 1
   _despawnHeight: -25
-  _density: 3
   _startsFrozen: 0
   _pointLight: {fileID: 6756247118417474602}
   _explosionCollider: {fileID: 5917521477468458838}
   _lightMinIntensity: 0.3
   _lightMaxIntensity: 3
   _lightIntensityIncreaseRate: 0.05
+  _explosionPrefab: {fileID: 3347768722095578876, guid: f11c863a228996b4785319d8e564ba86, type: 3}
   _explosionForce: 5000
   onExplodeDespawnFrames: 2
 --- !u!50 &2792295617183725336

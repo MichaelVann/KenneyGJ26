@@ -1,8 +1,10 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class WeighStation : MonoBehaviour
 {
+    [SerializeField] TextMeshProUGUI _valueText;
     List<FallingObject> _fallingObjects;
 
     vTimer m_processTimer;
@@ -29,11 +31,25 @@ public class WeighStation : MonoBehaviour
             GameHandler.s_instance.ChangeCash((int)item.GetValue());
             Destroy(item.gameObject);
         }
+        _fallingObjects.Clear();
+        RefreshValue();
+    }
+
+    void RefreshValue()
+    {
+        float value = 0f;
+
+        foreach (FallingObject item in _fallingObjects)
+        {
+            value += (int)item.GetValue();
+        }
+        _valueText.text = "$" + value.ToString();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         _fallingObjects.Add(collision.GetComponent<FallingObject>());
+        RefreshValue();
         m_processTimer.Reset();
     }
 

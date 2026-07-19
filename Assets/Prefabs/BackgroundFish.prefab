@@ -116,7 +116,7 @@ MonoBehaviour:
   _spriteRender: {fileID: 182792187274433706}
   _minMoveSpeed: 5
   _maxMoveSpeed: 15
-  _despawnX: 40
+  _despawnX: 17
   minScale: 1
   maxScale: 5
   _objectPrefabs:

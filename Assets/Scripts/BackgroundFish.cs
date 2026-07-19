@@ -77,12 +77,11 @@ public class BackgroundFish : MonoBehaviour
             heldFallingObject.transform.position = transform.position;
         }
 
-
         if (transform.position.x > _despawnX || transform.position.x < -_despawnX)
         {
             if (heldFallingObject.IsFrozen())
             {
-                Destroy(heldFallingObject);
+                Destroy(heldFallingObject.gameObject);
             }
             GameObject.Destroy(gameObject);
         }

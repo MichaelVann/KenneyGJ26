@@ -13,6 +13,8 @@ public class Mine : FallingObject
     [SerializeField] float _lightMinIntensity = 0.3f;
     [SerializeField] float _lightMaxIntensity = 3.0f;
     [SerializeField] float _lightIntensityIncreaseRate = 0.05f;
+    [SerializeField] GameObject _explosionPrefab;
+
 
     [SerializeField] float _explosionForce = 5.0f;
 
@@ -29,7 +31,7 @@ public class Mine : FallingObject
 
         _explosionCollider.gameObject.SetActive(false); 
 
-        float calculatedWeight = _density * transform.localScale.x * transform.localScale.y;
+        float calculatedWeight = transform.localScale.x * transform.localScale.y;
         _rigidbody.mass = calculatedWeight;
     }
 
@@ -91,6 +93,7 @@ public class Mine : FallingObject
         if (collision.gameObject.CompareTag("Falling Object") || collision.gameObject.CompareTag("Player"))
         {
             Explode();
+            Instantiate(_explosionPrefab, collision.contacts[0].point, Quaternion.identity);
         }
     }
 }

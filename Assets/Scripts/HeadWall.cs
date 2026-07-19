@@ -9,6 +9,7 @@ public class HeadWall : MonoBehaviour
     {
         m_boxCollider = GetComponent<BoxCollider2D>();
         m_spriteRenderer = GetComponent<SpriteRenderer>();
+        RefreshCollider();
     }
 
     // Update is called once per frame

@@ -3,19 +3,19 @@ using UnityEngine;
 
 public class FallingObject : MonoBehaviour
 {
-    [SerializeField] protected float _value = 1f;
+    [SerializeField] protected float _valueMultiplier = 1f;
     [SerializeField] protected Rigidbody2D _rigidbody;
     [SerializeField] protected float _spawnWeight = 1f;
     [SerializeField] protected float _despawnHeight = -10f;
-    [SerializeField] protected float _density = 10.0f;
     [SerializeField] bool _startsFrozen = true;
 
-    internal float GetValue() { return _value; }
+    internal float GetValue() { return m_value; }
     internal Rigidbody2D GetRigidbody2D() { return _rigidbody; }
 
     internal void SetLinearVelocityX(float a_velocityX) { _rigidbody.linearVelocityX = a_velocityX; }
 
     bool frozen;
+    float m_value;
 
     private void Awake()
     {
@@ -26,8 +26,7 @@ public class FallingObject : MonoBehaviour
 
         SetFrozen(_startsFrozen); //Start frozen
 
-        float calculatedWeight = _density * transform.localScale.x * transform.localScale.y;
-        _value = _rigidbody.mass = calculatedWeight;
+        m_value = _rigidbody.mass * _valueMultiplier;
     }
 
     private void Update()

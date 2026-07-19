@@ -38,7 +38,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6916605841741732748, guid: 32402516bea999b49b112c42b0e0a316, type: 3}
       propertyPath: m_Name
-      value: FallingObjectCircle
+      value: FO_Circle_small
       objectReference: {fileID: 0}
     - target: {fileID: 7726039041466739574, guid: 32402516bea999b49b112c42b0e0a316, type: 3}
       propertyPath: m_Sprite
@@ -47,6 +47,14 @@ PrefabInstance:
     - target: {fileID: 7726039041466739574, guid: 32402516bea999b49b112c42b0e0a316, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8814817822367065494, guid: 32402516bea999b49b112c42b0e0a316, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 8814817822367065494, guid: 32402516bea999b49b112c42b0e0a316, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.33
       objectReference: {fileID: 0}
     - target: {fileID: 8814817822367065494, guid: 32402516bea999b49b112c42b0e0a316, type: 3}
       propertyPath: m_LocalPosition.x
@@ -88,6 +96,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9222487201466702711, guid: 32402516bea999b49b112c42b0e0a316, type: 3}
+      propertyPath: m_Mass
+      value: 2.7777777
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -111,7 +123,7 @@ CircleCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: d6f6d2f8eb2dde74db999b51fb4fa36f, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
