@@ -47,7 +47,6 @@ public class Bubble : MonoBehaviour
             if (transform.position.x > wobbleDistance) wobbleRight = false;
         }
 
-
         if (!wobbleRight)
         {
             transform.position -= new Vector3(wobbleSpeed, 0, 0);

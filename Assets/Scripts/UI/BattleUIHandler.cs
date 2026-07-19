@@ -7,10 +7,10 @@ using UnityEngine.UI;
 public class BattleUIHandler : MonoBehaviour
 {
     internal static BattleUIHandler s_instance;
-    [SerializeField] GameObject _uiHudCanvas, _pauseMenu, _gameOverScreen, _pausedText;
+    [SerializeField] GameObject _uiHudCanvas, _pauseMenu, _gameOverScreen;
     [SerializeField] GameObject _dialoguePrefab;
     [SerializeField] InputActionReference _openMenuAction;
-    [SerializeField] TextMeshProUGUI _cashValueText, _debtValueText;
+    [SerializeField] TextMeshProUGUI _cashValueText, _debtValueText, _pausedText;
     [SerializeField] Image _debtTimerCircle;
     [SerializeField] Sprite _goodTimerSprite, _badTimerSprite;
     [SerializeField] GameObject _debtTimerCircleRootObject;
@@ -52,7 +52,16 @@ public class BattleUIHandler : MonoBehaviour
 
         _debtTimerCircle.fillAmount = debtTimeFraction;
         _debtTimerCircle.sprite = cash >= debt ? _goodTimerSprite : _badTimerSprite;
-        _pausedText.SetActive(BattleHandler.s_instance.GetDebtPaused());
+        if (BattleHandler.s_instance.GetDebtPaused())
+        {
+            _pausedText.gameObject.SetActive(true);
+            _pausedText.text = "Paused";
+        }
+        else
+        {
+            _pausedText.gameObject.SetActive(debtTimeFraction >= 0.75f);
+            _pausedText.text = "Debt Due!";
+        }
 
         debtTimeFraction = debtTimeFraction * debtTimeFraction;
         float _debtOscillation = cash >= debt ? 0f : debtTimeFraction * _debtTimerOscillationMagnitude;

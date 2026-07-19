@@ -1,13 +1,15 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Head : MonoBehaviour
 {
     [SerializeField] BoxCollider2D _boxCollider;
     [SerializeField] SpriteRenderer _spriteRenderer;
-    [SerializeField] float _massPerVolume, _defaultHeadSize, _headSizeIncreaseInterval, _proportionalIncrement, _originalHeadWallHeight, _headWallHeightIncrement;
+    [SerializeField] float _massPerVolume, _defaultHeadSize, _headSizeIncreaseInterval, _proportionalIncrement, _originalHeadWallHeight, _headWallHeightIncrement, _scrollForce;
     [SerializeField] Transform[] _headWalls;
     [SerializeField] SpriteRenderer[] _eyes;
     [SerializeField] GameObject _explosionPrefab;
+    [SerializeField] InputActionReference _scrollAction;
 
     [SerializeField] float _balancePidProportional, _balancePidIntegral, _balancePidDifferential;
     vPID m_balancePID;
@@ -39,6 +41,8 @@ public class Head : MonoBehaviour
             spriteRenderer.size = new Vector2(spriteRenderer.size.x, _originalHeadWallHeight + _headWallHeightIncrement * BattleHandler.s_instance.GetUpgrade(Upgrade.eUpgradeType.WallHeight).GetLevel());
         }
 
+        m_rigidBody.AddTorque(-_scrollAction.action.ReadValue<float>() * _scrollForce * Time.fixedDeltaTime);
+        RefreshSize();
     }
 
     internal void SetSizeLevel(int a_level)

@@ -67,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
                 delta = delta.normalized * Mathf.Clamp(delta.magnitude, -maxMoveForce, maxMoveForce);
 
                 Vector2 moveForce = delta / maxMoveForce;
-                moveForce *= _sprintAction.action.ReadValue<float>() > 0 ? _sprintForceMult : 1f;
+                //moveForce *= _sprintAction.action.ReadValue<float>() > 0 ? _sprintForceMult : 1f;
 
                 float upgradeBoost = _movementForceByMass + _movementForceIncrement * BattleHandler.s_instance.GetUpgrade(Upgrade.eUpgradeType.MovementForce).GetLevel();
 

@@ -4,7 +4,7 @@ public class Upgrade
 {
     int m_level;
     int m_cost;
-    const float m_costScaling = 1.6f;
+    const float m_costScaling = 1.25f;
 
     internal int GetCost() { return m_cost; }
     internal int GetLevel() { return m_level; }
@@ -17,7 +17,7 @@ public class Upgrade
     internal Upgrade()
     {
         m_level = 0;
-        m_cost = 5;
+        m_cost = 4;
     }
 
     internal void AttemptToBuy()
