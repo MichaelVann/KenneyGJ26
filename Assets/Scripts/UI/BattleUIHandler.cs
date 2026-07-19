@@ -7,13 +7,13 @@ using UnityEngine.UI;
 public class BattleUIHandler : MonoBehaviour
 {
     internal static BattleUIHandler s_instance;
-    [SerializeField] GameObject _uiHudCanvas, _pauseMenu, _pausedText;
+    [SerializeField] GameObject _uiHudCanvas, _pauseMenu, _gameOverScreen, _pausedText;
     [SerializeField] GameObject _dialoguePrefab;
     [SerializeField] InputActionReference _openMenuAction;
     [SerializeField] TextMeshProUGUI _cashValueText, _debtValueText;
     [SerializeField] Image _debtTimerCircle;
 
-
+    internal void SetGameOverScreenActive(bool a_active) { _gameOverScreen.SetActive(a_active); }
 
     bool m_dialogueOpen;
 

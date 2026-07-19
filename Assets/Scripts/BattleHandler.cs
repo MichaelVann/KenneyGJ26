@@ -10,7 +10,7 @@ public class BattleHandler : MonoBehaviour
     [SerializeField] Player _player;
     [SerializeField] float _startingDebtAmount, _startingCashAmount, _debtMult;
     internal static BattleHandler s_instance;
-    float m_pauseMenuTimeFactor, m_dialogueTimeFactor;
+    float m_pauseMenuTimeFactor, m_dialogueTimeFactor, m_gameOverTimeFactor;
 
     Transform m_targetCameraPoint;
     float m_debtAmount;
@@ -33,7 +33,7 @@ public class BattleHandler : MonoBehaviour
     private void Awake()
     {
         s_instance = this;
-        m_pauseMenuTimeFactor = m_dialogueTimeFactor = 1f;
+        m_pauseMenuTimeFactor = m_dialogueTimeFactor = m_gameOverTimeFactor = 1f;
         if (!GameHandler.s_instance)
         {
             Instantiate(_gameHandlerPrefab);
@@ -69,11 +69,18 @@ public class BattleHandler : MonoBehaviour
             GameHandler.s_instance.ChangeCash((int)-m_debtAmount);
             m_debtAmount = m_debtAmount * _debtMult;
         }
+
+        if (GameHandler.s_instance.GetCash() < 0f)
+        {
+            BattleUIHandler.s_instance.SetGameOverScreenActive(true);
+            m_gameOverTimeFactor = 0f;
+            UpdateTimeScale();
+        }
     }
 
     void UpdateTimeScale()
     {
-        Time.timeScale = m_pauseMenuTimeFactor * m_dialogueTimeFactor;
+        Time.timeScale = m_pauseMenuTimeFactor * m_dialogueTimeFactor * m_gameOverTimeFactor;
     }
 
     internal void RestartLevel()

@@ -27,7 +27,7 @@ public class Head : MonoBehaviour
     void FixedUpdate()
     {
         float proportional = _balancePidProportional + _proportionalIncrement * BattleHandler.s_instance.GetUpgrade(Upgrade.eUpgradeType.Stabiliser).GetLevel();
-
+        proportional *= Mathf.Pow(_spriteRenderer.size.x,2f);
         m_balancePID.SetVariables(proportional, _balancePidIntegral, proportional / 4f);
         float currentAngle = VLib.Vector2ToEulerAngle(transform.up);
         float torque = m_balancePID.Update(currentAngle, 0f);

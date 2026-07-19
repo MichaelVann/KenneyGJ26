@@ -17,7 +17,7 @@ public class Upgrade
     internal Upgrade()
     {
         m_level = 0;
-        m_cost = 10;
+        m_cost = 5;
     }
 
     internal void AttemptToBuy()
