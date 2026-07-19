@@ -16,12 +16,14 @@ public class BattleHandler : MonoBehaviour
     float m_debtAmount;
     bool m_debtPaused;
     vTimer m_debtTimer;
-    
+    int m_cash;
+
     Upgrade[] m_upgrades;
 
     internal void SetPauseMenuTimeScale(float a_timeFactor) { m_pauseMenuTimeFactor = a_timeFactor; UpdateTimeScale(); }
     internal void SetDialogueTimeScale(float a_timeFactor) { m_dialogueTimeFactor = a_timeFactor; UpdateTimeScale(); }
-
+    internal void ChangeCash(int a_change) { m_cash += a_change; }
+    internal int GetCash() { return m_cash; }
     internal float GetDebtTimerFraction() { return m_debtTimer.GetCompletionPercentage(); }
     internal int GetDebt() { return (int)m_debtAmount; }
 
@@ -40,7 +42,7 @@ public class BattleHandler : MonoBehaviour
         }
         m_targetCameraPoint = _mainCameraPoint;
         m_debtTimer = new vTimer(60f);
-        GameHandler.s_instance.ChangeCash((int)_startingCashAmount);
+        m_cash = (int)_startingCashAmount;
         m_debtAmount = _startingDebtAmount;
 
         m_upgrades = new Upgrade[(int)Upgrade.eUpgradeType.Count];
@@ -66,11 +68,11 @@ public class BattleHandler : MonoBehaviour
 
         if (!m_debtPaused && m_debtTimer.Update())
         {
-            GameHandler.s_instance.ChangeCash((int)-m_debtAmount);
+            ChangeCash((int)-m_debtAmount);
             m_debtAmount = m_debtAmount * _debtMult;
         }
 
-        if (GameHandler.s_instance.GetCash() < 0f)
+        if (GetCash() < 0f)
         {
             BattleUIHandler.s_instance.SetGameOverScreenActive(true);
             m_gameOverTimeFactor = 0f;

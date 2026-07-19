@@ -22,10 +22,10 @@ public class Upgrade
 
     internal void AttemptToBuy()
     {
-        int cash = GameHandler.s_instance.GetCash();
+        int cash = BattleHandler.s_instance.GetCash();
         if (cash >= m_cost)
         {
-            GameHandler.s_instance.ChangeCash(-m_cost);
+            BattleHandler.s_instance.ChangeCash(-m_cost);
             LevelUp();
         }
     }

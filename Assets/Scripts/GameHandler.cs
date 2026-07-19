@@ -15,7 +15,6 @@ public class GameHandler : MonoBehaviour
 
     float m_levelTimeFactor;
 
-    int m_cash;
 
     int m_gameLevel;
 
@@ -24,12 +23,10 @@ public class GameHandler : MonoBehaviour
 
     internal GameObject GetUIFillBarPrefab() { return _uiFillBarPrefab; }
 
-    internal int GetCash() { return m_cash; }
 
     internal int GetGameLevel() { return m_gameLevel; }
     internal int GetLevelDifficulty() { return m_levelDifficulty; }
     internal void SetLevelTimeFactor(float a_levelTimeFactor) { m_levelTimeFactor = a_levelTimeFactor; UpdateTimeScale(); }
-    internal void ChangeCash(int a_change) { m_cash += a_change; }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -40,7 +37,6 @@ public class GameHandler : MonoBehaviour
 
         m_gameLevel = 1;
 
-        m_cash = 0;
         UpdateLevelDifficulty();
 
         Application.targetFrameRate = 60;
@@ -80,21 +76,5 @@ public class GameHandler : MonoBehaviour
     internal void QuitGame()
     {
         Application.Quit();
-    }
-
-    internal void ResolveLevel(bool a_win)
-    {
-        if (a_win)
-        {
-            //Win
-            m_gameLevel++;
-        }
-        else
-        {
-            //Loss
-            m_gameLevel = 1;
-            m_cash = 0;
-        }
-        UpdateLevelDifficulty();
     }
 }

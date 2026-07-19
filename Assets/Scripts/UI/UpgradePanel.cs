@@ -34,7 +34,7 @@ public class UpgradePanel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int cash = GameHandler.s_instance.GetCash();
+        int cash = BattleHandler.s_instance.GetCash();
         _buyButton.interactable = m_upgrade.GetCost() <= cash;
         _costText.text = "$" + m_upgrade.GetCost().ToString();
         _levelText.text = m_upgrade.GetLevel().ToString();

@@ -39,7 +39,7 @@ public class BattleUIHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int cash = GameHandler.s_instance.GetCash();
+        int cash = BattleHandler.s_instance.GetCash();
         int debt = BattleHandler.s_instance.GetDebt();
         _cashValueText.text = "$" + cash.ToString();
         _cashValueText.color = cash >= debt ?  Color.green : Color.red;
@@ -69,6 +69,11 @@ public class BattleUIHandler : MonoBehaviour
     void TogglePauseMenu(InputAction.CallbackContext a_context)
     {
         SetPauseMenuOpened(!_pauseMenu.activeSelf);
+    }
+
+    private void OnDestroy()
+    {
+        _openMenuAction.action.started -= TogglePauseMenu;
     }
 
     public void SetPauseMenuOpened(bool a_open)

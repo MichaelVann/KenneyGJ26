@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class TractorBeam : MonoBehaviour
 {
@@ -35,6 +36,7 @@ public class TractorBeam : MonoBehaviour
             fallingObject.transform.position = _teleportPoint.position;
             fallingObject.GetRigidbody2D().bodyType = RigidbodyType2D.Dynamic;
 
+            BattleHandler.s_instance.ChangeCash((int)fallingObject.GetValue());
             AudioManager.s_instance.PlaySFX(_sellSFX);
         }
     }

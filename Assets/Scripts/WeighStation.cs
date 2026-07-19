@@ -28,7 +28,6 @@ public class WeighStation : MonoBehaviour
     {
         foreach (FallingObject item in _fallingObjects)
         {
-            GameHandler.s_instance.ChangeCash((int)item.GetValue());
             Destroy(item.gameObject);
         }
         _fallingObjects.Clear();
