@@ -35,7 +35,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioMixer m_audioMixer;
 
     [SerializeField] AudioSource m_SFXAudioSource;
-    [SerializeField] AudioSource[] _musicStems;
+    [SerializeField] AudioSource music;
 
     internal void ToggleSoundChannel(eSoundChannel a_soundChannel) { m_soundChannels[(int)a_soundChannel].enabled = !m_soundChannels[(int)a_soundChannel].enabled; Refresh(); }
 
@@ -64,10 +64,7 @@ public class AudioManager : MonoBehaviour
 
         Debug.Log(AudioSettings.dspTime);
 
-        for (int i = 0;i < _musicStems.Length;i++)
-        {
-            _musicStems[i].PlayScheduled(AudioSettings.dspTime + 20d);
-        }
+        music.Play();
     }
 
 
