@@ -4,6 +4,7 @@ public class TractorBeam : MonoBehaviour
 {
     [SerializeField] float _forceByMass;
     [SerializeField] Transform _teleportPoint;
+    [SerializeField] AudioClip _sellSFX;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -33,6 +34,8 @@ public class TractorBeam : MonoBehaviour
             fallingObject.GetRigidbody2D().bodyType = RigidbodyType2D.Kinematic;
             fallingObject.transform.position = _teleportPoint.position;
             fallingObject.GetRigidbody2D().bodyType = RigidbodyType2D.Dynamic;
+
+            AudioManager.s_instance.PlaySFX(_sellSFX);
         }
     }
 }

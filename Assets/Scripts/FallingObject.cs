@@ -8,6 +8,7 @@ public class FallingObject : MonoBehaviour
     [SerializeField] protected float _spawnWeight = 1f;
     [SerializeField] protected float _despawnHeight = -10f;
     [SerializeField] bool _startsFrozen = true;
+    [SerializeField] AudioClip _thudSFX;
 
     internal float GetValue() { return m_value; }
     internal Rigidbody2D GetRigidbody2D() { return _rigidbody; }
@@ -63,5 +64,11 @@ public class FallingObject : MonoBehaviour
     public bool IsFrozen() { return frozen; }
 
     public float GetMass() { return _rigidbody.mass;  }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log(collision.relativeVelocity.magnitude);
+        if (collision.relativeVelocity.magnitude > 5.0) AudioManager.s_instance.PlaySFX(_thudSFX);
+    }
 
 }

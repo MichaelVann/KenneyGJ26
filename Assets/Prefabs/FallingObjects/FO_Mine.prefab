@@ -156,6 +156,7 @@ MonoBehaviour:
   _lightMaxIntensity: 3
   _lightIntensityIncreaseRate: 0.05
   _explosionPrefab: {fileID: 3347768722095578876, guid: f11c863a228996b4785319d8e564ba86, type: 3}
+  _explosionSFX: {fileID: 8300000, guid: 1f27ea298533bb24ab1022ffa97e44c8, type: 3}
   _explosionForce: 5000
   onExplodeDespawnFrames: 2
 --- !u!50 &2792295617183725336

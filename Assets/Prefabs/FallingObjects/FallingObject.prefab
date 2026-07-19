@@ -239,9 +239,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc21e5ed72b57f64a9291d5b627d47a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  _value: 1
+  _valueMultiplier: 1
   _rigidbody: {fileID: 9222487201466702711}
   _spawnWeight: 1
   _despawnHeight: -20
-  _density: 10
   _startsFrozen: 1
+  _thudSFX: {fileID: 8300000, guid: 707cbaa4ffb32984ab1f09779c843155, type: 3}

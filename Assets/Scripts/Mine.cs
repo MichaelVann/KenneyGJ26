@@ -15,6 +15,8 @@ public class Mine : FallingObject
     [SerializeField] float _lightIntensityIncreaseRate = 0.05f;
     [SerializeField] GameObject _explosionPrefab;
 
+    [SerializeField] AudioClip _explosionSFX;
+
 
     [SerializeField] float _explosionForce = 5.0f;
 
@@ -62,6 +64,7 @@ public class Mine : FallingObject
     {
         //enable the explosion collision shape
         _explosionCollider.gameObject.SetActive(true);
+        AudioManager.s_instance.PlaySFX(_explosionSFX);
 
     }
 

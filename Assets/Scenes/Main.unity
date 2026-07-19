@@ -20483,6 +20483,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   _forceByMass: 1000
   _teleportPoint: {fileID: 553565683}
+  _sellSFX: {fileID: 8300000, guid: 0f5596d1327f5b4468e3e862586060eb, type: 3}
 --- !u!58 &1508782872
 CircleCollider2D:
   m_ObjectHideFlags: 0

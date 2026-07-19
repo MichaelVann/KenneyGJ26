@@ -23,6 +23,8 @@ public class BackgroundFish : MonoBehaviour
     [SerializeField] float _maxSpawnImpulse = 5.0f;
     [SerializeField] float _maxSpawnTorque = 1.0f;
 
+    [SerializeField] AudioClip dropScaleSFX;
+
     float moveSpeed = 0.0f;
     public bool goesRight = true;
     FallingObject heldFallingObject;
@@ -108,6 +110,8 @@ public class BackgroundFish : MonoBehaviour
         float randImpulse = VLib.vRandom(0, _maxSpawnImpulse) * heldFallingObject.GetMass();
         Vector3 impulseDir = VLib.vRandom(0, 1) > 0.5 ? new Vector3(-1, 0, 0) : new Vector3(+1, 0, 0); //randomly select between impusling left or right
         heldFallingObject.ApplyForce(randImpulse, impulseDir);
+
+        AudioManager.s_instance.PlaySFX(dropScaleSFX);
     }
 
     public bool IsGoingRight() { return goesRight; }

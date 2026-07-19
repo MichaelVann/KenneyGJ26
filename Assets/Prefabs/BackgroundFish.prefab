@@ -133,4 +133,5 @@ MonoBehaviour:
   _maxScaleSpawnTime: 3
   _maxSpawnImpulse: 5
   _maxSpawnTorque: 1
+  dropScaleSFX: {fileID: 8300000, guid: 7d05f2d01c8b526449b8a7e2cb9c4993, type: 3}
   goesRight: 1
