@@ -12,6 +12,9 @@ public class BattleUIHandler : MonoBehaviour
     [SerializeField] InputActionReference _openMenuAction;
     [SerializeField] TextMeshProUGUI _cashValueText, _debtValueText;
     [SerializeField] Image _debtTimerCircle;
+    [SerializeField] Sprite _goodTimerSprite, _badTimerSprite;
+    [SerializeField] GameObject _debtTimerCircleRootObject;
+    [SerializeField] float _debtTimerOscillationMagnitude, _debtTimerOscillationSpeed;
 
     internal void SetGameOverScreenActive(bool a_active) { _gameOverScreen.SetActive(a_active); }
 
@@ -44,8 +47,18 @@ public class BattleUIHandler : MonoBehaviour
         _cashValueText.text = "$" + cash.ToString();
         _cashValueText.color = cash >= debt ?  Color.green : Color.red;
         _debtValueText.text = "$" + debt.ToString();
-        _debtTimerCircle.fillAmount = BattleHandler.s_instance.GetDebtTimerFraction();
+
+        float debtTimeFraction = BattleHandler.s_instance.GetDebtTimerFraction();
+
+        _debtTimerCircle.fillAmount = debtTimeFraction;
+        _debtTimerCircle.sprite = cash >= debt ? _goodTimerSprite : _badTimerSprite;
         _pausedText.SetActive(BattleHandler.s_instance.GetDebtPaused());
+
+        debtTimeFraction = debtTimeFraction * debtTimeFraction;
+        float _debtOscillation = cash >= debt ? 0f : debtTimeFraction * _debtTimerOscillationMagnitude;
+
+        _debtTimerCircleRootObject.transform.localScale = Vector2.one * VLib.SinBetween(1f - _debtOscillation, 1f + _debtOscillation, _debtTimerOscillationSpeed * debtTimeFraction, 0f);
+
     }
 
     internal void StartDialogue(List<string> a_strings)
