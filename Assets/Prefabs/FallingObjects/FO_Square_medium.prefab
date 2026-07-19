@@ -88,6 +88,10 @@ PrefabInstance:
       propertyPath: _spawnWeight
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 9222487201466702711, guid: 32402516bea999b49b112c42b0e0a316, type: 3}
+      propertyPath: m_Mass
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8273306061019972809, guid: 32402516bea999b49b112c42b0e0a316, type: 3}
     m_RemovedGameObjects: []

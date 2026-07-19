@@ -6,7 +6,6 @@ public class BackgroundFish : MonoBehaviour
     [SerializeField] Sprite[] _fishSprites;
     [SerializeField] SpriteRenderer _spriteRender;
 
-
     [SerializeField] float _minMoveSpeed = 5.0f;
     [SerializeField] float _maxMoveSpeed = 15.0f;
 
@@ -26,6 +25,7 @@ public class BackgroundFish : MonoBehaviour
 
     float moveSpeed = 0.0f;
     public bool goesRight = true;
+    FallingObject heldFallingObject;
 
     vTimer timer;
 
@@ -55,9 +55,13 @@ public class BackgroundFish : MonoBehaviour
         //scale the sprite
         _spriteRender.transform.localScale = _spriteRender.transform.localScale * VLib.vRandom(minScale, maxScale);
 
-
         //create the timer that will randomly drop scales (fallingObject)
-        timer = new vTimer(VLib.vRandom(_minScaleSpawnTime, _maxScaleSpawnTime));
+        timer = new vTimer(VLib.vRandom(_minScaleSpawnTime, _maxScaleSpawnTime), true);
+
+        //select a random fallingObject to hold
+        GameObject fallingObjectPrefab = SelectRandomFallingObject();
+        heldFallingObject = Instantiate(fallingObjectPrefab, transform.position, Quaternion.identity).GetComponent<FallingObject>();
+
 
     }
 
@@ -67,8 +71,14 @@ public class BackgroundFish : MonoBehaviour
         bool inSpawnArea = transform.position.x > -15 && transform.position.x < 15;
         if (timer.Update() && inSpawnArea)
         {
-            SpawnObject();
+            DropObject();
         }
+
+        if (heldFallingObject.IsFrozen())
+        {
+            heldFallingObject.transform.position = transform.position;
+        }
+
 
         if (transform.position.x > _despawnX || transform.position.x < -_despawnX)
         {
@@ -83,6 +93,20 @@ public class BackgroundFish : MonoBehaviour
         {
             transform.position -= Vector3.right * (moveSpeed * Time.deltaTime);
         }
+    }
+
+    void DropObject()
+    {
+        heldFallingObject.SetFrozen(false);
+
+        //add a small rotation impulse 
+        float randTorque = VLib.vRandom(-_maxSpawnTorque, +_maxSpawnTorque) * heldFallingObject.GetMass();
+        heldFallingObject.ApplyTorque(randTorque);
+
+        //add a velocity impulse
+        float randImpulse = VLib.vRandom(0, _maxSpawnImpulse) * heldFallingObject.GetMass();
+        Vector3 impulseDir = VLib.vRandom(0, 1) > 0.5 ? new Vector3(-1, 0, 0) : new Vector3(+1, 0, 0); //randomly select between impusling left or right
+        heldFallingObject.ApplyForce(randImpulse, impulseDir);
     }
 
     public bool IsGoingRight() { return goesRight; }
@@ -100,7 +124,6 @@ public class BackgroundFish : MonoBehaviour
         fallingObject.ApplyTorque(randTorque);
 
         //add a velocity impulse
-        fallingObject.SetLinearVelocityX(moveSpeed * (goesRight ? 1f : -1f));
         float randImpulse = VLib.vRandom(0, _maxSpawnImpulse);
         Vector3 impulseDir = VLib.vRandom(0, 1) > 0.5 ? new Vector3(-1, 0, 0) : new Vector3(+1, 0, 0); //randomly select between impusling left or right
         fallingObject.ApplyForce(randImpulse, impulseDir);
