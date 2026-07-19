@@ -61,8 +61,6 @@ public class BackgroundFish : MonoBehaviour
         //select a random fallingObject to hold
         GameObject fallingObjectPrefab = SelectRandomFallingObject();
         heldFallingObject = Instantiate(fallingObjectPrefab, transform.position, Quaternion.identity).GetComponent<FallingObject>();
-
-
     }
 
     // Update is called once per frame
@@ -82,6 +80,10 @@ public class BackgroundFish : MonoBehaviour
 
         if (transform.position.x > _despawnX || transform.position.x < -_despawnX)
         {
+            if (heldFallingObject.IsFrozen())
+            {
+                Destroy(heldFallingObject);
+            }
             GameObject.Destroy(gameObject);
         }
 

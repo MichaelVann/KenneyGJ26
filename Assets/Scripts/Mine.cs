@@ -68,19 +68,29 @@ public class Mine : FallingObject
         Rigidbody2D rigidBody = other.gameObject.GetComponent<Rigidbody2D>();
         if (rigidBody == null) return;
 
-        Vector2 vector = (rigidBody.transform.position - transform.position);
-        Vector2 dir = vector.normalized;
-        float magnitude = Mathf.Clamp(vector.magnitude, 0.1f, 100.0f);
+        Player player =  other.gameObject.GetComponentInParent<Player>();
+        if (player)
+        {
+            player.Explode();
+            collided = true;
+        }
+        else
+        {
+            Vector2 vector = (rigidBody.transform.position - transform.position);
+            Vector2 dir = Vector2.up.RotateVector2(VLib.vRandom(-45f, 45f));
+            float magnitude = Mathf.Clamp(vector.magnitude, 1f, 100.0f);
 
-        //rigidBody.AddForce((dir * _explosionForce) / (magnitude * magnitude));
-        rigidBody.AddForce(new Vector2(100f, 100f));
+            rigidBody.AddForce((dir * _explosionForce) / (magnitude));
 
-        collided = true;
+            collided = true;
+        }    
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player")) Explode();
-
+        if (collision.gameObject.CompareTag("Falling Object") || collision.gameObject.CompareTag("Player"))
+        {
+            Explode();
+        }
     }
 }

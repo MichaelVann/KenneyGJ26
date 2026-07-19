@@ -156,8 +156,8 @@ MonoBehaviour:
   _lightMinIntensity: 0.3
   _lightMaxIntensity: 3
   _lightIntensityIncreaseRate: 0.05
-  _explosionForce: 1000
-  onExplodeDespawnTime: 0.3
+  _explosionForce: 5000
+  onExplodeDespawnFrames: 2
 --- !u!50 &2792295617183725336
 Rigidbody2D:
   serializedVersion: 5
@@ -380,7 +380,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
+  m_Radius: 1.3
 --- !u!1 &6750695698313450947
 GameObject:
   m_ObjectHideFlags: 0

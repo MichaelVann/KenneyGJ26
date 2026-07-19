@@ -11,6 +11,7 @@ public class FallingObject : MonoBehaviour
     [SerializeField] bool _startsFrozen = true;
 
     internal float GetValue() { return _value; }
+    internal Rigidbody2D GetRigidbody2D() { return _rigidbody; }
 
     internal void SetLinearVelocityX(float a_velocityX) { _rigidbody.linearVelocityX = a_velocityX; }
 
@@ -26,7 +27,7 @@ public class FallingObject : MonoBehaviour
         SetFrozen(_startsFrozen); //Start frozen
 
         float calculatedWeight = _density * transform.localScale.x * transform.localScale.y;
-        _rigidbody.mass = calculatedWeight;
+        _value = _rigidbody.mass = calculatedWeight;
     }
 
     private void Update()

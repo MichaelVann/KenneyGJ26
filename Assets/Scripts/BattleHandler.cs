@@ -8,16 +8,19 @@ public class BattleHandler : MonoBehaviour
     [SerializeField] Transform _mainCameraPoint, _upgradesCameraPoint;
     [SerializeField] float _cameraLerpSpeed;
     [SerializeField] Player _player;
-    [SerializeField] TextMeshProUGUI _cashValueText;
+    [SerializeField] float _startingDebtAmount, _startingCashAmount, _debtMult;
     internal static BattleHandler s_instance;
     float m_pauseMenuTimeFactor, m_dialogueTimeFactor;
 
     Transform m_targetCameraPoint;
-
+    float m_debtAmount;
+    vTimer m_debtTimer;
 
     internal void SetPauseMenuTimeScale(float a_timeFactor) { m_pauseMenuTimeFactor = a_timeFactor; UpdateTimeScale(); }
     internal void SetDialogueTimeScale(float a_timeFactor) { m_dialogueTimeFactor = a_timeFactor; UpdateTimeScale(); }
 
+    internal float GetDebtTimerFraction() { return m_debtTimer.GetCompletionPercentage(); }
+    internal int GetDebt() { return (int)m_debtAmount; }
 
 
     private void Awake()
@@ -29,6 +32,8 @@ public class BattleHandler : MonoBehaviour
             Instantiate(_gameHandlerPrefab);
         }
         m_targetCameraPoint = _mainCameraPoint;
+        m_debtTimer = new vTimer(60f);
+        GameHandler.s_instance.ChangeCash((int)_startingCashAmount);
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -42,7 +47,12 @@ public class BattleHandler : MonoBehaviour
     {
         m_targetCameraPoint = _player.transform.position.x >= 15f ? _upgradesCameraPoint : _mainCameraPoint;
         Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, m_targetCameraPoint.position, Time.deltaTime * _cameraLerpSpeed);
-        _cashValueText.text = GameHandler.s_instance.GetCash().ToString();
+
+        if (m_debtTimer.Update())
+        {
+            GameHandler.s_instance.ChangeCash((int)m_debtAmount);
+            m_debtAmount = m_debtAmount * _debtMult;
+        }
     }
 
     void UpdateTimeScale()

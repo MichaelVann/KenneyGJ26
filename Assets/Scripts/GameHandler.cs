@@ -40,7 +40,7 @@ public class GameHandler : MonoBehaviour
 
         m_gameLevel = 1;
 
-        m_cash = 2;
+        m_cash = 0;
         UpdateLevelDifficulty();
 
         Application.targetFrameRate = 60;

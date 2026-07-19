@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     [SerializeField] Head _head;
+    [SerializeField] float _explosionForceByMass;
     PlayerMovement m_playerMovement;
     Rigidbody2D m_rigidBody;
 
@@ -35,6 +36,13 @@ public class Player : MonoBehaviour
     internal void IncreaseHeadSize()
     {
         _head.IncreaseSize();
+    }
+
+    internal void Explode()
+    {
+        Vector2 dir = Vector2.up.RotateVector2(VLib.vRandom(-45f, 45f));
+
+        m_rigidBody.AddForce(dir * _explosionForceByMass * m_rigidBody.mass);
     }
 
 }

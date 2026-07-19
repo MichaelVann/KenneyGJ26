@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class TractorBeam : MonoBehaviour
 {
-    [SerializeField] float _force;
+    [SerializeField] float _forceByMass;
+    [SerializeField] Transform _teleportPoint;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -18,9 +19,10 @@ public class TractorBeam : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D a_collider)
     {
-        float force = _force * Time.fixedDeltaTime;
+        Rigidbody2D colliderRB = a_collider.gameObject.GetComponent<Rigidbody2D>();
+        float force = _forceByMass * colliderRB.mass * Time.fixedDeltaTime;
         Vector3 direction = (transform.position - a_collider.transform.position).normalized;
-        a_collider.gameObject.GetComponent<Rigidbody2D>().AddForce(force * direction);
+        colliderRB.AddForce(force * direction);
     }
 
     private void OnCollisionEnter2D(Collision2D a_collision)
@@ -28,7 +30,9 @@ public class TractorBeam : MonoBehaviour
         FallingObject fallingObject = a_collision.gameObject.GetComponent<FallingObject>();
         if (fallingObject)
         {
-            Destroy(fallingObject.gameObject);
+            fallingObject.GetRigidbody2D().bodyType = RigidbodyType2D.Kinematic;
+            fallingObject.transform.position = _teleportPoint.position;
+            fallingObject.GetRigidbody2D().bodyType = RigidbodyType2D.Dynamic;
             GameHandler.s_instance.ChangeCash(VLib.ChanceTruncate(fallingObject.GetValue()));
         }
     }

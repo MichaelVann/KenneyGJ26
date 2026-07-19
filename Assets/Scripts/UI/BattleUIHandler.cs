@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class BattleUIHandler : MonoBehaviour
 {
@@ -8,6 +10,10 @@ public class BattleUIHandler : MonoBehaviour
     [SerializeField] GameObject _uiHudCanvas, _pauseMenu;
     [SerializeField] GameObject _dialoguePrefab;
     [SerializeField] InputActionReference _openMenuAction;
+    [SerializeField] TextMeshProUGUI _cashValueText, _debtValueText;
+    [SerializeField] Image _debtTimerCircle;
+
+
 
     bool m_dialogueOpen;
 
@@ -27,7 +33,9 @@ public class BattleUIHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        _cashValueText.text = "$" + GameHandler.s_instance.GetCash().ToString();
+        _debtValueText.text = "$" + BattleHandler.s_instance.GetDebt().ToString();
+        _debtTimerCircle.fillAmount = BattleHandler.s_instance.GetDebtTimerFraction();
     }
 
     internal void StartDialogue(List<string> a_strings)
