@@ -31,6 +31,7 @@ public class BattleUIHandler : MonoBehaviour
     {
         m_dialogueOpen = false;
         SetPauseMenuOpened(false);
+        _uiHudCanvas.SetActive(true);
 
         List<string> dialogs = new List<string>();
         dialogs.Add("We've finally caught you! You're stuck here until you pay off your degenerate son's debts! I hear he's still gambling profusely on the underground seahorse races. So it might be a while.");

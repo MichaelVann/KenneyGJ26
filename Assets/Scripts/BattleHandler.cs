@@ -14,6 +14,7 @@ public class BattleHandler : MonoBehaviour
 
     Transform m_targetCameraPoint;
     float m_debtAmount;
+    int m_debtLevel;
     bool m_debtPaused;
     vTimer m_debtTimer;
     int m_cash;
@@ -26,6 +27,7 @@ public class BattleHandler : MonoBehaviour
     internal int GetCash() { return m_cash; }
     internal float GetDebtTimerFraction() { return m_debtTimer.GetCompletionPercentage(); }
     internal int GetDebt() { return (int)m_debtAmount; }
+    internal int GetDebtLevel() { return m_debtLevel; }
 
     internal Upgrade GetUpgrade(int a_index) { return m_upgrades[a_index]; }
     internal Upgrade GetUpgrade(Upgrade.eUpgradeType a_type) { return m_upgrades[(int)a_type]; }
@@ -43,6 +45,7 @@ public class BattleHandler : MonoBehaviour
         m_targetCameraPoint = _mainCameraPoint;
         m_debtTimer = new vTimer(60f);
         m_cash = (int)_startingCashAmount;
+        m_debtLevel = 1;
         m_debtAmount = _startingDebtAmount;
 
         m_upgrades = new Upgrade[(int)Upgrade.eUpgradeType.Count];
@@ -70,6 +73,7 @@ public class BattleHandler : MonoBehaviour
         {
             ChangeCash((int)-m_debtAmount);
             m_debtAmount = m_debtAmount * _debtMult;
+            m_debtLevel++;
         }
 
         if (GetCash() < 0f)

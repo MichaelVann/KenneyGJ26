@@ -27,8 +27,7 @@ public class UnderwaterBackground : MonoBehaviour
         {
             SpawnFish();
             //set a new max time for the itmer
-            timer = new vTimer(VLib.vRandom(_minSpawnTime, _maxSpawnTime));
-
+            timer = new vTimer(VLib.vRandom(_minSpawnTime, _maxSpawnTime) / BattleHandler.s_instance.GetDebtLevel());
         }
     }
 
@@ -45,7 +44,5 @@ public class UnderwaterBackground : MonoBehaviour
         float randomY = VLib.vRandom(0.0f, _maxSpawnY);
         float xSpawn = fish.IsGoingRight() ? _leftXSpawn : _rightXSpawn;
         fish.transform.position = new Vector3(xSpawn, randomY, transform.position.z); 
-
-
     }
 }

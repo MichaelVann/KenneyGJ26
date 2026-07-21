@@ -62,15 +62,13 @@ public class AudioManager : MonoBehaviour
             m_soundChannels[i].exposedParameterName = exposedParameters[i];
         }
 
-        Debug.Log(AudioSettings.dspTime);
-
         music.Play();
     }
 
 
     private void Start()
     {
-        SetChannelVolume(eSoundChannel.Music, 0f);
+
     }
 
     // Update is called once per frame

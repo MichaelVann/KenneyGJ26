@@ -40,8 +40,10 @@ public class Head : MonoBehaviour
             SpriteRenderer spriteRenderer = _headWalls[i].GetComponent<SpriteRenderer>();
             spriteRenderer.size = new Vector2(spriteRenderer.size.x, _originalHeadWallHeight + _headWallHeightIncrement * BattleHandler.s_instance.GetUpgrade(Upgrade.eUpgradeType.WallHeight).GetLevel());
         }
+        float scrollForce = -_scrollAction.action.ReadValue<float>() * _scrollForce * Time.fixedDeltaTime;
+        scrollForce *= Mathf.Pow(_spriteRenderer.size.x, 2f);
 
-        m_rigidBody.AddTorque(-_scrollAction.action.ReadValue<float>() * _scrollForce * Time.fixedDeltaTime);
+        m_rigidBody.AddTorque(scrollForce);
         RefreshSize();
     }
 
@@ -57,6 +59,9 @@ public class Head : MonoBehaviour
         m_rigidBody.mass = _boxCollider.size.x * _boxCollider.size.y * _massPerVolume;
 
         float wallY = 0.8f + _headWalls[0].gameObject.GetComponent<SpriteRenderer>().size.y / 2f;
+        _headWalls[0].gameObject.GetComponent<BoxCollider2D>().size = _headWalls[0].gameObject.GetComponent<SpriteRenderer>().size;
+        _headWalls[1].gameObject.GetComponent<BoxCollider2D>().size = _headWalls[1].gameObject.GetComponent<SpriteRenderer>().size;
+
         _headWalls[0].transform.localPosition = new Vector3(-_boxCollider.size.x/2f, wallY);
         _headWalls[1].transform.localPosition = new Vector3(_boxCollider.size.x/2f,  wallY);
 

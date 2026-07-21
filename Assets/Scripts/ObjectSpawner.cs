@@ -2,7 +2,6 @@ using NUnit.Framework;
 using System;
 using Unity.Mathematics;
 using Unity.VisualScripting;
-using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -32,7 +31,7 @@ void Start()
         if (timer.Update())
         {
             SpawnObject();
-            timer = new vTimer(VLib.vRandom(minSpawnRate, maxSpawnRate));
+            timer = new vTimer(VLib.vRandom(minSpawnRate, maxSpawnRate) / BattleHandler.s_instance.GetDebtLevel());
         }
     }
 

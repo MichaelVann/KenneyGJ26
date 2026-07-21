@@ -129,6 +129,9 @@ MonoBehaviour:
   - {fileID: 2717194224747283305, guid: 1fa16912d63987842a6cd9f916b4847d, type: 3}
   - {fileID: 2717194224747283305, guid: 3754af73147c81c4fbe898dc5d8921a2, type: 3}
   - {fileID: 2717194224747283305, guid: 9f963e33d24c97e4882e2b03d1c6f6fd, type: 3}
+  - {fileID: 2717194224747283305, guid: a648384512162614a8ae8d79bbea567e, type: 3}
+  - {fileID: 2717194224747283305, guid: 543d937ef50a4764e81f4e4355e77d62, type: 3}
+  - {fileID: 2717194224747283305, guid: 81587144431a75a45b5fc568a9dcfadb, type: 3}
   _minScaleSpawnTime: 1.5
   _maxScaleSpawnTime: 3
   _maxSpawnImpulse: 5
